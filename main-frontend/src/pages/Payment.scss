@@ -1,0 +1,155 @@
+@import "../variables.scss";
+
+.Payment {
+	height: 100%;
+	width: 100%;
+	background: $main-bg-color;
+	position: absolute;
+	.container-fluid {
+		background: $main-bg-color;
+	}
+	h1 {
+		font-weight: bold;
+		font-size: 1.65em;
+		color: #FEFEFE;
+	}
+	h2 {
+		font-weight: bold;
+		font-size: 1.5em;
+		color: #FCFCFC;
+	}
+	h3 {
+		font-weight: 500;
+		font-size: 1.125em;
+		color: #FCFCFC;
+	}
+	span {
+		font-weight: 500;
+		font-size: 1.125em;
+		color: #FFFFFF;
+	}
+	p {
+		font-weight: 400;
+		font-size: 1.125em;
+		color: #FCFCFC;
+		opacity: .5;
+	}
+	.Payment__item {
+		cursor: pointer;
+		background: #1A1B1E;
+		box-shadow: 0px 5px 80px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
+		button {
+			background: none;
+			width: 100%;
+			height: 100%;
+		}
+		img {
+			width: 170px;
+		}
+	}
+}
+.OverlayModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	overflow-y: auto;
+	padding: 1em;
+	z-index: 999;
+	@media(min-width: 576px) {
+		padding: 2em;
+	}
+	.Modal-payment {
+		margin: auto;
+		width: 100%;
+		outline: none;
+		@media(min-width: 576px) {
+			width: 85%;
+		}
+		@media(min-width: 768px) {
+			width: 65%;
+		}
+		@media(min-width: 992px) {
+			width: 50%;
+		}
+		@media(min-width: 1200px) {
+			width: 40%;
+		}
+		&.Modal-full-width {
+			width: 100%;
+		}
+		.modal_inner {
+			border: none;
+			background: #1A1B1E;
+			position: relative;
+			padding: 2em;
+			border-radius: 10px;
+			@media(min-width: 576px) {
+				padding: 4em;
+			}
+			.crossBtn{
+				cursor: pointer;
+				padding:0;
+				outline: none;
+				margin:0;
+				background: none;
+				border: none;
+				position: absolute;
+				top: 1.5em;
+				right: 1.5em;
+				width: 1.2em;
+				height: 1.2em;
+				img{
+					height: 100%;
+					width: 100%;
+				}
+			}
+			h2 {
+				font-weight: bold;
+				font-size: 1.5em;
+				color: #FCFCFC;
+				margin-bottom: 1.5em;
+			}
+			p {
+				font-weight: 400;
+				font-size: 1.125em;
+				color: #FFFFFF;
+				margin-bottom: 2em;
+			}
+			span.or {
+				width: 100%;
+				text-align: center;
+				margin: 2em 0 1em;
+				position: relative;
+			}
+			form {
+	  			//min-width: 22em;
+	  			@media(min-width: 768px) {
+	  				min-width: 22em;
+	  			}
+	  			.Input {
+	  				label {
+	  				}
+	  				input {
+	  					border-radius: 5px;
+	  					outline: none;
+	  					display: block;
+	  					width: 100%;
+	  					color: $admin-secondary-text-color;
+	  				}
+	  			}
+	  			button {
+	  					    padding: 0.5em 2em;
+					    font-size: 1em;
+					    border-radius: 99px;
+					    border: none;
+					    background: #fff;
+					    margin-top: 1.5em;
+	  				}
+	  		}
+	  	}
+	}
+}

@@ -1,0 +1,27 @@
+@import "../../variables.scss";
+
+.Description {
+	background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+	backdrop-filter: blur(90px);
+	width: 100%;
+	border-radius: 20px;
+	h4 {
+		font-weight: 600;
+		font-size: 1.125em;
+		color: #E7E7E8;
+	}
+	p {
+		font-weight: 400;
+			color: #D0D0D1;
+			font-family: 'Roboto', sans-serif;
+			font-size: 1em;
+			line-height: 150%;
+	}
+	ul {
+		padding: 0 30px;
+		margin: 0;
+	}
+	.Description__text {
+		color: #D0D0D1;
+	}
+}   

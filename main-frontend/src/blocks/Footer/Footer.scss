@@ -1,0 +1,33 @@
+@import "../../variables.scss";
+
+.Footer {
+	background: #141418;
+	
+	.container-fluid {
+		//border-top: 1px solid #23262F;
+	}
+	.Footer__logo {
+		font-weight: 900;
+		font-size: 1.5em;
+		color: #E7E7E8;
+	}
+	span {
+		font-weight: normal;
+		font-size: 1em;
+		line-height: 150%;
+		color: #D0D0D1;
+	}
+	h4 {
+		font-weight: 600;
+		font-size: 1.125em;
+		color: #E7E7E8;
+	}
+	a {
+		font-weight: 500;
+		font-size: 1em;
+		color: #A1A1A3;
+		&:hover {
+			color: #ffffff;
+		}
+	}
+}

@@ -1,0 +1,46 @@
+@import "../../variables.scss";
+
+.UserPasport {
+ background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+  backdrop-filter: blur(90px);
+  width: 100%;
+  border-radius: 20px;
+  h4 {
+   font-weight: 600;
+    font-size: 1.125em;
+    color: #E7E7E8;
+  }
+  p {
+   font-weight: 400;
+      color: #D0D0D1;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1em;
+      line-height: 150%;
+  }
+  .UserPasport__input-holder {
+    width: 100%;
+    @media(min-width: 992px) {
+      width: 48%;
+    }
+  }
+  .UserPasport__check {
+    span {
+      font-size: 1em;
+      color: #D0D0D1;
+    }
+    button {
+      font-size: 1em;
+      background: none;
+      color: #A1A1A3;
+    &:hover {
+      color: #ffffff;
+    }
+    }
+  }
+  .UserPasport__checked {
+    span {
+      font-size: 1em;
+      color: #D0D0D1;
+    }
+  }
+}

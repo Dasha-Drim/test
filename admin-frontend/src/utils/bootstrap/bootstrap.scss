@@ -1,0 +1,153 @@
+// 1. Сначала включите функции (чтобы Вы могли управлять цветами, SVG, вычислением и т.д.)
+@import "bootstrap/scss/functions";
+
+$light: #F7F9FA;
+$btn-font-weight: 500;
+
+@import "bootstrap/scss/variables";
+
+
+// 2. Включите сюда любые переопределения переменных по умолчанию
+$grid-columns: 12 !default;
+$grid-gutter-width: 2.5rem; /*2.5rem*/
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .375,
+  2: $spacer * .625,
+  3: $spacer * 1.25,
+  4: $spacer * 1.875,
+  5: $spacer * 2.5,
+  6: $spacer * 3.75,
+  7: $spacer * 5,
+  8: $spacer * 6.25,
+);
+
+
+
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+
+
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+  xxxl: 1560px
+);
+
+// 3. Включите оставшуюся часть необходимых таблиц стилей Bootstrap
+
+$btn-border-radius: 5px;
+
+
+.btn-secondary {
+  svg > * {
+    fill: #fff;
+  }
+}
+
+
+$h1-font-size:                $font-size-base * 1.5;
+$h2-font-size:                $font-size-base * 1.25;
+
+$h3-font-size:                $font-size-base * 1.2;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
+
+
+$display-font-sizes: (
+  1: 1.15rem,
+  2: 4.5rem,
+  3: 4rem,
+  4: 3.5rem,
+  5: 3rem,
+  6: 2.5rem
+);
+
+$display-font-weight: 500;
+
+
+
+$table-color: #21232A;
+//$table-border-color: red;
+$table-border-width: 0;
+
+// separator after thead
+$table-group-separator-color: #E7E7E8;
+
+$table-cell-padding-y: 1rem;
+
+.table {
+  > thead {
+    border-top: 1px solid $table-group-separator-color;
+    border-bottom: 1px solid $table-group-separator-color;
+    color: #5A5A5D;
+    > tr > th {
+      white-space: nowrap;
+    }
+  }
+  > tbody {
+    > tr > td {
+      white-space: nowrap;
+    }
+  }
+  svg > * {
+    fill: #5C636A;
+  }
+}
+
+// 4. Включите любые дополнительные компоненты Bootstrap, как Вам нравится
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/spinners";
+
+
+@import "bootstrap/scss/helpers/visually-hidden";
+
+
+// 5. Добавьте сюда дополнительный пользовательский код
+
+a {
+	text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  /* отображаем курсор в виде руки при наведении; некоторые
+  считают, что необходимо оставлять стрелочный вид для кнопок */
+  cursor: pointer;
+}

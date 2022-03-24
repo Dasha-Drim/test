@@ -1,0 +1,35 @@
+@import "../../variables.scss";
+
+.TopWins {
+	background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+	backdrop-filter: blur(90px);
+	width: 100%;
+	border-radius: 20px;
+	h4 {
+		font-weight: 600;
+		font-size: 1.125em;
+		color: #E7E7E8;
+	}
+	.TopWins__line {
+		margin-bottom: 16px;
+		span {
+			font-size: 1em;
+			color: #D0D0D1;
+		}
+		&:nth-child(2) {
+			span {
+				color: #FFE600;
+			}
+		}
+		&:nth-child(3) {
+			span {
+				color: #B9B9B9;
+			}
+		}
+		&:nth-child(4) {
+			span {
+				color: #DC9E00;
+			}
+		}
+	}
+}   

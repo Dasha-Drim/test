@@ -1,0 +1,63 @@
+.UserPromocode{
+  background: linear-gradient(98.13deg, rgba(46, 52, 211, 0.5) -2.14%, rgba(169, 49, 188, 0.5) 104.08%);
+  border-radius: 20px;
+  .promocode{
+    display: flex;
+    flex-wrap: wrap;
+    span{
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1.5em;
+      color: #D0D0D1;
+      margin-bottom: 0.9em;
+      margin-right: 0.25em;
+      @media(max-width: 560px){
+        font-size: 1.3em;
+        margin-right: 0;
+        width: 100%;
+      }
+      &:first-child{
+        @media(max-width: 560px){
+          margin-bottom: 5px;
+        }
+      }
+      &:last-child{
+        margin-right: 0;
+        @media(max-width: 560px){
+          margin-bottom: 1.5em;
+        }
+      }
+    }
+  }
+  h4 {
+    font-weight: 600;
+    font-size: 1.125em;
+    color: #E7E7E8;
+  }
+  p{
+    font-weight: 400;
+      color: #D0D0D1;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1em;
+      line-height: 150%;
+  }
+  label {
+    color: #D0D0D1;
+  }
+  input[type="text"] {
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFF;
+  }
+  .UserPromocode__info {
+    width: 100%;
+    @media(min-width: 576px) {
+      width: 48%;
+    }
+  }
+  form {
+    width: 100%;
+    @media(min-width: 576px) {
+      width: 48%;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.Sidebar {
+	top: 0;
+	left: 0;
+	//min-height: 100vh;
+	height: 100%;
+	width: 100%;
+	background: #F7F9FA;
+	.logo {
+		color: #141418;
+	}
+	&-nav {
+		a {
+			color: #5A5A5D;
+			font-weight: 500;
+			svg {
+				
+				height: 1rem;
+				width: 1rem;
+				path {
+					fill: #5A5A5D;
+				}
+			}
+			&.active {
+				background: #E0E2E3;
+			}
+		}
+	}
+}

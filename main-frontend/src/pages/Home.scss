@@ -1,0 +1,366 @@
+@import "../variables.scss";
+
+@keyframes jumpBallOneMain {
+	0% {top: 50%}
+	50% {top: 47%}
+	100% {top: 50%}
+}			
+@keyframes jumpBallTwoMain {
+	0% {right: 29%;top: 8%;}
+	50% {right: 29%;top: 10%;}
+	100% {right: 29%;top: 8%;}
+}
+@keyframes jumpBallTwoMainMedia {
+	0% {top: 0%;}
+	50% {top: 4%;}
+	100% {top: 0%;}
+}
+@keyframes jumpBallTwoMainMediat {
+	0% {top: -5%;}
+	50% {top: -2%;}
+	100% {top: -5%;}
+}
+@keyframes jumpBallThreeMain {
+	0% {right: 56%;top: -3%;}
+	50% {right: 56%;top: 0%;}
+	100% {right: 56%;top: -3%;}
+}
+@keyframes jumpBallThreeMainMedia {
+	0% {right: 56%;top: -5%;}
+	50% {right: 56%;top: -2%;}
+	100% {right: 56%;top: -5%;}
+}
+@keyframes jumpBallThreeMainMedia2 {
+	0% {right: 56%;top: -10%;}
+	50% {right: 56%;top: -8%;}
+	100% {right: 56%;top: -10%;}
+}
+@keyframes jumpBallFourMain {
+	0% {top: 22%;}
+	50% {top: 19%;}
+	100% {top: 22%;}
+}
+@keyframes jumpBallFourMainMedia {
+	0% {top: 18%;}
+	50% {top: 16%;}
+	100% {top: 18%;}
+}
+@keyframes jumpBallFiveMain {
+	0% {top: 0%;}
+	50% {top: -5%;}
+	100% {top: 0%;}
+}
+
+.Home {
+	background: $main-bg-color;
+	position: relative;
+	.gradient__holder {
+		position: absolute;
+		top: -12%;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+	h1 {
+		font-weight: 700;
+		font-size: 3em;
+		color: #E7E7E8;
+		font-family: 'Roboto', sans-serif;
+	}
+	h2 {
+		font-weight: 700;
+		font-size: 1.75em;
+		color: #E7E7E8;
+		font-family: 'Roboto', sans-serif;
+	}
+	p {
+		font-weight: 400;
+		color: #D0D0D1;
+		font-family: 'Roboto', sans-serif;
+		font-size: 1.25em;
+		line-height: 150%;
+	}
+	.Home__main-container {
+		.main-btn {
+			padding: 0.75em 4em;
+		}
+		.lottoball {
+			user-select: none;
+			&__one {
+				left: -5%;
+				top: 50%;
+				animation: jumpBallOneMain 1.5s infinite linear;
+				
+				@media(min-width: 768px) {
+					width: 7em;
+				}
+				@media(min-width: 992px) {
+					left: -32%;
+				}
+				@media(min-width: 1200px) {
+					width: auto;
+					left: -24%;
+				}
+				
+			}
+			&__two {
+				right: 29%;
+				top: 8%;
+				animation: jumpBallTwoMain 1.5s infinite linear;
+				
+				@media(min-width: 768px) {
+					width: 3em;
+				}
+				@media(min-width: 992px) {
+					animation: jumpBallTwoMainMedia 1.5s infinite linear;
+				}
+				@media(min-width: 1400px) {
+					width: auto;
+					animation: jumpBallTwoMainMediat 1.5s infinite linear;
+				}
+				
+			}
+			&__three {
+				right: 56%;
+				top: 0%;
+				animation: jumpBallThreeMain 1.5s infinite linear;
+				@media(min-width: 768px) {
+					width: 5em;
+				}
+				@media(min-width: 992px) {
+					top: -5%;
+					animation: jumpBallThreeMainMedia2 1.5s infinite linear;
+				}
+				@media(min-width: 1200px) {
+					
+					animation: jumpBallThreeMainMedia 1.5s infinite linear;
+				}
+				@media(min-width: 1400px) {
+					width: auto;
+					top: 0%;
+					animation: jumpBallThreeMain 1.5s infinite linear;
+				}
+
+			}
+			&__four {
+				top: 22%;
+				right: 0%;
+				animation: jumpBallFourMain 1.5s infinite linear;
+				@media(min-width: 768px) {
+					width: 6em;
+				}
+				@media(min-width: 992px) {
+					right: -11%;
+					animation: jumpBallFourMainMedia 1.5s infinite linear;
+				}
+				@media(min-width: 1200px) {
+					width: auto;
+					animation: jumpBallFourMain 1.5s infinite linear;
+					right: 0%;
+				}
+			}
+			&__five {
+				top: 0%;
+				right: 80%;
+				animation: jumpBallFiveMain 1.5s infinite linear;
+				img {
+					@media(min-width: 768px) {
+						width: 4em;
+					}
+					@media(min-width: 992px) {
+						right: 90%;
+					}
+					@media(min-width: 1200px) {
+						width: auto;
+					}
+				}
+			}
+		}
+		.chips__img {
+			user-select: none;
+			@media(min-width: 992px) {
+				width: 25.75em
+			}
+			@media(min-width: 1200px) {
+				width: 40.75em;
+			}
+			@media(min-width: 1400px) {
+				width: auto;
+			}
+		}
+		.image__holder {
+			user-select: none;
+			width: 100%;
+			@media(min-width: 992px) {
+				width: auto;
+			}
+		}
+	}
+	.Home__bonus-container {
+		.lottoball {
+			right: 0;
+			top: 0;
+			&__five {
+				top: 30%;
+				right: 102%;
+				animation: jumpBallFive 2s infinite linear;
+			}
+			&__one {
+				z-index: 1;
+				top: 83%;
+				right: 80%;
+				animation: jumpBallOne 2s infinite linear;
+			}
+			&__two {
+				right: 90%;
+				top: -19%;
+				animation: jumpBallTwo 2s infinite linear;
+			}
+			&__three {
+				right: 30%;
+				top: -11%;
+				animation: jumpBallThree 2s infinite linear;
+			}
+			&__four {
+				top: 70%;
+				right: -5%;
+				animation: jumpBallFour 2s infinite linear;
+			} 
+		}
+		.bonus-container__holder {
+			background: linear-gradient(98.13deg, rgba(46, 52, 211, 0.5) -2.14%, rgba(169, 49, 188, 0.5) 104.08%);
+			backdrop-filter: blur(90px);
+			border-radius: 20px;
+			z-index: 10;
+			.holder__bonus {
+				background: #21232A;
+				border-radius: 20px;
+				span {
+					font-weight: normal;
+					font-size: 1em;
+					line-height: 150%;
+					color: #D0D0D1;
+					&.bonus__span-bold {
+						font-weight: 700;
+					}
+				}
+			}
+		}
+	}
+	.Home__adventage-two-container {
+		h4 {
+			font-weight: 600;
+			font-size: 1.375em;
+			color: #E7E7E8;
+		}
+		p {
+			font-size: 1em;
+		}
+	}
+}
+
+@keyframes jumpBallOne {
+	0% {
+		top: 83%;
+		right: 80%;
+	}
+	50% {
+		top: 80%;
+		right: 80%;
+	}
+	100% {
+		top: 83%;
+		right: 80%;
+	}
+}
+@keyframes jumpBallTwo {
+	0% {
+		right: 90%;
+		top: -19%;
+	}
+	50% {
+		right: 90%;
+		top: -15%;
+	}
+	100% {
+		right: 90%;
+		top: -19%;
+	}
+}
+@keyframes jumpBallThree {
+	0% {
+		right: 30%;
+		top: -11%;
+	}
+	50% {
+		right: 30%;
+		top: -13%;
+	}
+	100% {
+		right: 30%;
+		top: -11%;
+	}
+}
+@keyframes jumpBallFour {
+	0% {
+		top: 70%;
+		right: -5%;
+	}
+	50% {
+		top: 73%;
+		right: -5%;
+	}
+	100% {
+		top: 70%;
+		right: -5%;
+	}
+}
+@keyframes jumpBallFive {
+	0% {
+		top: 30%;
+		right: 102%;
+	}
+	50% {
+		top: 34%;
+		right: 102%;
+	}
+	100% {
+		top: 30%;
+		right: 102%;
+	}
+}
+
+
+$animationSteps: 2;
+$animationDuration: 1;
+$animationElement: tt;
+$animationElementsCount: 8;
+
+$delayBetweenLetters: 0.2;
+
+#{$animationElement} {
+	animation-name: anim-text-flow-keys;
+	animation-duration: #{$animationDuration}s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-fill-mode: forwards;
+}
+
+@keyframes anim-text-flow-keys {
+	@for $i from 0 through $animationSteps {
+		#{percentage($i * (1 / $animationSteps))} {
+			color: #E7E7E8;
+		}
+	}
+	100% {
+		color: #2E34D3;
+	}
+}
+
+$totalDelayTime: $animationElementsCount * $delayBetweenLetters;
+
+@for $i from 1 through $animationElementsCount {
+	#{$animationElement}:nth-of-type(#{$i}) {
+		animation-delay: #{($i * $delayBetweenLetters) - $totalDelayTime}s;
+	}
+}

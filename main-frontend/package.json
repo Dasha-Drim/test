@@ -1,0 +1,71 @@
+{
+  "name": "bingo37_react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
+    "axios": "^0.21.0",
+    "chart.js": "^3.5.1",
+    "classnames": "^2.3.1",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "i18next": "^21.6.12",
+    "i18next-browser-languagedetector": "^6.1.3",
+    "i18next-http-backend": "^1.3.2",
+    "js-cookie": "^3.0.1",
+    "luxon": "^1.25.0",
+    "mobile-detect": "^1.4.5",
+    "react": "^17.0.1",
+    "react-chartjs-2": "^3.0.4",
+    "react-date-picker": "^8.3.6",
+    "react-device-detect": "^1.17.0",
+    "react-dom": "^17.0.1",
+    "react-hook-form": "^6.11.0",
+    "react-i18next": "^11.15.5",
+    "react-input-mask": "^3.0.0-alpha.2",
+    "react-localization": "^1.0.18",
+    "react-modal": "^3.14.3",
+    "react-parallax-mouse": "^1.5.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.0",
+    "react-scrollbars-custom": "^4.0.27",
+    "react-select": "^3.1.0",
+    "socket.io-client": "^3.0.3",
+    "use-orientation-change": "^1.0.4",
+    "web-vitals": "^0.2.4",
+    "sass":"^1.48.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "react-scripts start",
+    "docs": "./node_modules/.bin/jsdoc src/games/bingo37/Bingo37.js -d public/docs README.md",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "sass": "^1.49.9"
+  }
+}

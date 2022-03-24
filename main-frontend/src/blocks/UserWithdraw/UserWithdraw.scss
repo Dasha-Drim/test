@@ -1,0 +1,136 @@
+@import "../../main.scss";
+
+.UserWithdraw{
+  background: $user-block;
+  border-radius: 5px;
+  padding: 1.875em 1.875em 2.375em;
+  margin-bottom: 2em;
+  @media(max-width: 660px){
+    padding: 1.9em 1.25em 2em;
+  }
+  @media(max-width: 992px){
+    margin-bottom: 3em;
+  }
+  @media(max-width: 560px){
+    margin-bottom: 2.5em;
+  }
+  span {
+    display: block;
+  }
+  .UserPaymentInfo
+  .mobile-display{
+    @media(max-width: 560px){
+      display: none;
+    }
+  }
+  .section__balance-output{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:3.19em;
+    align-items: flex-end;
+    @media(max-width: 560px){
+      display: block;
+      margin-bottom: 2.5em;
+    }
+    .balance__output{
+      width: 48.5%;
+      @media(max-width: 560px){
+        width: 100%;
+        margin-bottom: 1.25em;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .btn{
+      position: relative;
+      .MainButton {
+        width: 100%;
+      }
+    }
+  }
+  .section__balance-data {
+    position: relative;
+    .balance-data__header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+      @media(max-width: 560px){
+        display: none;
+      }
+      span{
+        width: 24%;
+      }
+      .condition {
+        text-align: right;
+      }
+    }
+    .balance-data__line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2em;
+      @media(max-width: 560px){
+        flex-wrap: wrap;
+        margin-bottom: 1.875em;
+      }
+      @media(max-width: 560px){
+        .mobile-display {
+          display: none;
+        }
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      span{
+        width: 24%;
+        @media(max-width: 560px) {
+          width: 50%;
+          margin-bottom: 5px;
+        }
+      }
+      .condition{
+        text-align: right;
+        color: $condition-credited;
+        @media(max-width: 560px) {
+          order: 1;
+          text-align: left;
+        }
+      }
+      .summ{
+        @media(max-width: 560px) {
+          order: 2;
+          text-align: right;
+          &:before{
+            content: "+";
+            font-size: 1em;
+            color: #FFF;
+            text-align: center;
+            margin-right: 2px;
+          }
+        }
+      }
+      .date{
+        @media(max-width: 560px) {
+          order:3;
+        }
+      }
+    }
+    .read_more {
+      text-align: center;
+      width: 100%;
+      button {
+        color: $user-text-primary;
+        padding: .8em 3.6em;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        background: $u-blue-whale;
+        color: $user-text-primary;
+        cursor: pointer;
+        margin: 0 auto;
+        font-size: .9em;
+        display: flex;
+      }
+    }
+  }
+}

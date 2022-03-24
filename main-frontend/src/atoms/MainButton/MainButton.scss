@@ -1,0 +1,22 @@
+@import '../../main.scss';
+
+.MainButton{
+  border-radius: 10px;
+  background: $main-btn;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  color:#FFF;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.5em;
+  padding: 0.9em 1.4em;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(80%)
+  }
+}

@@ -1,0 +1,263 @@
+{
+	"title": "Open the world of fast <br/>bets with <tt>R</tt><tt>e</tt><tt>a</tt><tt>l</tt><tt>L</tt><tt>o</tt><tt>t</tt><tt>o</tt>",
+	"subtitle":"Big wins and high odds",
+	"registration_btn": "Registration",
+
+	"title_advantage_card_one": "A real lottomachine",
+	"text_advantage_card_one": "Watch the ball drop live",
+	"title_advantage_card_two": "Official license",
+	"text_advantage_card_two": "We are licensed in Curacao and operate legally",
+	"title_advantage_card_three": "Honest rules",
+	"text_advantage_card_three": "Each game has coefficients and transparent rules",
+
+	"header_games": "Games",
+	"bingo_x_title": "Bingo X",
+	"bingo_37_title": "Bingo 37",
+	"link_to_games": "Go to the games catalog",
+
+	"welcome_bonus_header": "Welcome Bonus",
+	"welcome_bonus_text": "Enter the promo code START in your personal account after <br/> registration and get $ 3 to your account",
+	"welcome_bonus_span_one": "Promo code",
+	"welcome_bonus_span_two": "One-time",
+
+	"title_advantage_one": "Convenient replenishment and withdrawal",
+	"text_advantage_one": "A large selection of payment methods, including cryptocurrencies. Quick withdrawal",
+	"title_advantage_two": "Honesty and openness",
+	"text_advantage_two": "In any game, the winnings are determined by the live lototron",
+	"title_advantage_three": "High coefficients",
+	"text_advantage_three": "A fair multiplier for any bets in all games",
+
+	
+	"description": "Description",
+	"description_bingo_37": "<p>Bingo 37 is a dynamic game with simple rules and high odds. Each round, the lottery drum throws out a random number from 1 to 37 inclusive. The task is to guess the number of the drop-down ball. Here is a dynamic table and a unique opportunity to create various combinations of bets, ranging from the simplest - on a single number, to complex combinations on lines, ranges of numbers and adjacent cells.</p>",
+	"rules": "Rules of the game",
+	"rules_bingo_37": "<p>Each round takes place in two stages: accepting bets and drawing. Each stage lasts an average of about 40 seconds. While accepting bets, you can put chips on the table. Bingo 37 uses chips of the following denominations:<ul><li>1</li><li>2</li><li>5</li><li>10</li><li>20</li></ul>Each chip can be placed both on one cell and on the intersection of cells (by clicking on the separating line), special fields with ranges are also available (for example, 1-12 or “Line 1”). <br />The more specific the forecast, the bigger the win. The following coefficients are used in the game:<ul><li>Number - x36;</li><li>Pair - x18;</li><li>Square or horizontal of one group of 12 numbers - x9;</li><li>Dozen - x3;</li><li>Large/small - x2.</li></ul>After the end of the betting stage, the drawing begins: the lottery drum goes live, which throws out a random ball with a number. </p>",
+	
+	
+	"description_bingo_x": "<p>Bingo X is an exciting game with the familiar roulette table and similar rules. But there is a slight difference - there is no Zero here, the numbers start from 1 and end with 37. The live lottery drum throws one ball every round, the amount of winnings depends on the accuracy of the bet - and for this we have prepared many opportunities: bet not only on a specific number, but and any intersections of cells, pay attention to the ability to put on a color (some of the cells are red, some are white).</p>",
+	"rules_bingo_x": "<p>Each round consists of two stages: accepting bets and drawing a ball. Stages last an average of about 40 seconds. While accepting bets, you can interact with the table by placing chips on it. Bingo X uses chips of the following denominations:<ul><li>1</li><li>2</li><li>5</li><li>10</li><li>20</li></ul>You have complete freedom - you can bet chips both on the same number and on the intersection of any numbers adjacent to each other. There are also special fields - lines, dozens (1-12, 13-24, 25-36), even/odd, large/small (1-18, 19-36) and colors (as you may have noticed, some of the cells on the table are colored in red, some in white). <br />The more accurate your forecast is, the bigger the winnings will be. The following odds are used in the game:<ul><li>Number - x36</li><li>Pair - x18;</li><li>Three - x12;</li><li>Square or horizontal of one group of 12 numbers - x9;</li><li>Dozen - x3;</li><li>Large/small - x2.</li></ul>After the end of the betting stage, the draw begins: the lottery drum goes live , which pops a random ball with a number.</p>",
+
+	
+	"auth_title": "Login and registration",
+	"auth_subtitle": "Login or register to be able to bid",
+	"sign_in": "Sign in",
+	"register": "Register",
+
+	
+	"contacts_title": "Contacts",
+	"contacts_header_email": "technical support e-mail",
+	"contacts_header_phone": "phone number",
+
+	
+	"error_title": "Payment error",
+	"error_message": "Something went wrong, please try again. Funds have not been debited",
+	"go_to_lk": "Go to personal account",
+
+	
+	"faq_title": "FAQ — questions and answers",
+	"question_one": "How to register or log in to an account?",
+	"answer_one": "To register or log into your account, you must click on the “Login and Register” button at the top of the site, then select one of the actions.<br /> You can register using your phone number. Enter your phone number and create a password, then enter the code from SMS. Fine! Registration completed.<br />You can enter using your phone number and password. If you do not remember your password, then after the first unsuccessful login attempt, the system will prompt you to reset your password (click “Forgot your password?” and follow the instructions).",
+	"question_two": "Do I need to pass identification to play on the site?",
+	"answer_two": "Identification is not mandatory for online players, but in order to place bets at Lottolive betting clubs, you must fill out the “Passport details” section in your personal account and confirm your account with your passport and the phone number that was used during registration on the first visit.<br />Please Please note that in individual cases, the administration has the right to request identity documents from the online player. The procedure is simple and is carried out once. The administration has the right to suspend the account until the identification is passed.",
+	"question_three": "How to credit money to the account?",
+	"answer_three": "You can replenish your account using the following methods:<ul><li>Bank cards (MIR, MasterCard, Visa);</li><li>QIWI Wallet; Mobile payments (MTS, Megafon, Beeline and Tele2);</li><li>Internet payment systems (UMoney, WebMoney and VK Pay);</li><li>Internet banking (Sberbank Online and Alfa-Click) ;</li><li>Terminals and communication salons.</li></ul> The minimum amount to be credited is 10.",
+	"question_four": "How to make a payment from an account?",
+	"answer_four": "Payment from the account is made to bank cards (MIR, MasterCard, Visa). In your personal account in the “Deposit and Withdrawal” section, you must enter the amount and card number, and then click “Withdraw”. Withdrawal of funds takes from several minutes to 48 hours. The exact withdrawal time depends on the processing speed of the transaction by the payment system.",
+	"question_five": "How to use bonuses?",
+	"answer_five": "Bonuses are added to your balance and are similar to the usual deposit of funds. The only difference is the restriction on the withdrawal of bonuses - they can be withdrawn only after bets equivalent to the size of the credited bonus funds. Bonuses are spent first.",
+	"question_six": "What should I do if something went wrong and I didn't receive my winnings?",
+	"answer_six": "If there is a malfunction in the lottery drum, the bet is canceled automatically, the money is returned to the account. Try to wait a bit and refresh the page.<br/> If the problem is not related to the lottery drum or the money has not been returned, contact us in any way from the 'Contacts' section, do not forget to provide the phone number (which was used during registration), as well as the name of the game. We will definitely check the correctness of the funds credited and, in case of an error, we will correct the balance.",
+	"faq_subtitle": "Didn't find an answer?",
+	"faq_text": "You can ask your question to our technical support. Contact us in any convenient way",
+
+	
+	"license_title": "License",
+	"license_text": "licence here",
+
+	
+	"log_out": "Log out of your personal account",
+
+	
+	"come_back": "Сome back",
+	"login_title": "Login",
+	"login_text": "Select your user type.",
+	"online": "Online",
+	"offline": "Offline",
+	"online_text": "Enter the login (phone or mail) and password you provided during registration. If you are not registered, please go back.",
+	"offline_text": "Enter a code. If you do not have a code, you need to contact the administrator",
+	"error_text": "Invalid username or password",
+	"forgot_your_password_link": "Forgot your password?",
+	"label_input_login": "Login",
+	"label_input_password": "Password",
+	"label_input_code": "Code",
+	"enter": "Enter",
+
+	
+	"payment_text": "Choose a method",
+	"payment_sum": "Sum",
+	"no_methods_text": "No ways available",
+	"modal_withdraw_title": "Fill in the details",
+	"modal_withdraw_text": "Fill in the details of the wallet to which the payment will be made",
+	"modal_withdraw_label_wallet": "Specify wallet",
+	"modal_withdraw_label_phone": "Enter your phone number",
+	"modal_withdraw_label_card": "Specify a card",
+	"withdraw_btn": "Withdraw",
+	"model_success_title": "Successfully",
+	"model_success_text": "You have created a withdrawal request. Expect withdrawals can take up to 48 hours. If something goes wrong, contact technical support",
+	"model_error_title": "Error",
+
+	
+	"principles_title": "Our principles",
+	"paragraph_one": "Lottolive is a professional betting club for fans of fast bets. The vector of our efforts is to build a truly honest and convenient platform for online gambling.",
+	"paragraph_two": "We buy only the best equipment for our games, each game is developed from scratch by our order.",
+	"paragraph_header_one": "About transparency and honesty",
+	"paragraph_three": "The victory in any game is determined by a ball thrown out by a real lottery machine. You can follow its work live on the game page; a camera is installed on each lottery machine. The winnings are calculated strictly according to the coefficients indicated on the “About the game” page. No complicated calculation formulas and pseudo-random algorithms!",
+	"paragraph_header_two": "Responsible gaming",
+	"paragraph_four": "Part of our social policy is 'Responsible Gaming'. The goal is to prevent our guests from possible undesirable consequences of the game.",
+	"paragraph_five": "Make decisions consciously. Remember that a responsible approach begins with the correct perception and awareness of the principles that you will adhere to so that the game brings only positive emotions.",
+
+	
+	"privacy_title": "User Agreement",
+
+	
+	"registration_title": "Registration",
+	"choose_method_text": "Сhoose registration method.",
+	"phone": "Phone",
+	"email": "Email",
+	"rergistration_text_mail": "Enter your mail adress and create a password. You will use this information to log in.",
+	"rergistration_text_phone": "Enter your phone number and create a password. You will use this information to log in.",
+	"error_wrong_text": "Wrong login or password",
+	"error_already_registered": "You are already registered",
+	"registartion_label_currency": "Currency",
+	"registartion_label_phone": "Phone number",
+	"registartion_label_mail": "Mail adress",
+	"registartion_label_password": "Password (minimum 7 characters)",
+	"registartion_label_agreement": "I have read and agree to the user agreement",
+	"btn_send_sms": "Send a SMS",
+	"btn_send_mail": "Send a mail",
+	"code_text": "Enter code from SMS or mail letter",
+	"code_error": "Incorrect code",
+	"code_label": "Confirmation code",
+	"continue": "Continue",
+
+	
+	"restore_password_title": "Password recovery",
+	"restore_password_text_one": "Enter the login you provided during registration. If you are not registered, please go back.",
+	"restore_password_error_one": "Wrong login",
+	"restore_password_label_login": "Login",
+	"restore_password_btn_one": "Receive code",
+
+	"restore_password_error_two": "Incorrect code",
+	"restore_password_label_code": "SMS or Mail confirmation code",
+	"restore_password_btn_two": "Continue",
+
+	"restore_password_text_three": "Enter the new password you will use to log in",
+	"restore_password_label_passwod": "New password",
+	"restore_password_btn_three": "Change password",
+
+	
+	"success_title": "Payment was successful",
+	"success_text": "Your balance has been replenished. Good luck bidding!",
+
+	"header_home_link": "Lobby",
+	"header_games_link": "Games",
+	"header_auth_link": "Login or register",
+	"header_balance": "Balance",
+	"header_profile_link": "Profile",
+
+	"footer_information": "Information",
+	"footer_license": "License",
+	"footer_policy": "User Agreement",
+	"footer_principles": "Our principles",
+	"footer_navigation": "Navigation",
+	"footer_home": "Lobby",
+	"footer_games": "Games",
+	"footer_contacts": "Our contacts",
+	"footer_developer": "Developed in Amont.studio",
+
+	"gamecard_soon": "Soon...",
+	"gamecard_play": "Play",
+	"gamecard_demo": "Demo mode",
+	"gamecard_span": "Bet from 1",
+
+	"header_game_back": "To the games catalog",
+	"header_game_bingo37": "Dynamic game with simple rules. On the table are numbers from 1 to 37 and a live lottery drum.",
+	"header_game_bingoX": "An exciting game similar to roulette. Simple rules, great opportunities, colorful cells with numbers from 1 to 37.",
+	"header_game_play": "Play",
+	"header_game_demo": "Demo mode",
+
+	"top_wins": "Top wins",
+
+	"update_balance_header": "Deposit and withdrawal",
+	"update_balance_text": "To replenish or withdraw funds, specify the amount, and then click on the button.",
+	"update_balance_label": "Specify the amount",
+	"update_balance_btn_replenish": "Replenish",
+	"update_balance_btn_withdraw": "Withdraw",
+	"update_balance_modal_error": "Error",
+	"update_balance_modal_error_text": "Ouch! Something went wrong. It looks like the server is down, refresh the page and try again.",
+
+	"user_history_header": "Operations history",
+	"user_history_status_canceled": "(Canceled)",
+	"user_history_type_you": "You",
+	"user_history_type_bonus": "Bonus",
+	"user_history_type_admin": "Administration",
+	"user_history_status_canceled": "(Canceled)",
+	"user_history_show_more": "Show more",
+	"user_history_no_operations": "No deposits or withdrawals so far",
+
+	"user_passport_header": "Passport data",
+	"user_passport_text": "To play in the offline Realloto club, you must specify your passport details and confirm your account with the operator in the club. Don't forget your passport.",
+	"user_passport_label_surname": "Surname",
+	"user_passport_label_name": "Name",
+	"user_passport_label_patronymic": "Middle name",
+	"user_passport_label_date": "Date of Birth",
+	"user_passport_label_number": "Series and number",
+	"user_passport_save": "Save",
+	"user_passport_checked": "You have successfully verified your passport details",
+	"user_passport_check": "You filled out your passport details",
+	"user_passport_change": "Change",
+	"user_passport_error_text": "Unrecognized error. Try later.",
+
+	"user_promocode_header": "Promo codes",
+	"user_promocode_text": "If you have a promo code, enter it to get a bonus!",
+	"user_promocode_label": "Promo code *",
+	"user_promocode_apply": "Apply",
+	"user_promocode_modal_success": "Successfully",
+	"user_promocode_modal_success_text": "You have successfully applied the promo code",
+	"user_promocode_modal_error": "Error",
+	"user_promocode_modal_error_text": "Unrecognized error. Try later.",
+
+	"loading": "Loading",
+
+
+
+
+	"reconnect": "Reconnecting in progress",
+	"bet": "Bet",
+	"win": "Win",
+	"balance": "Balance",
+	"line1": "line 1",
+	"line2": "line 2",
+	"line3": "line 3",
+	"repeat": "Repeat",
+	"buttonX2": "Double",
+	"buttonBack": "Back",
+	"buttonClear": "Clear",
+	"balanceYou": "Your balance",
+	"insufficient": "Insufficient balance",
+	"moreThen": "You cannot bet more than 2000",
+	"cell37": "Bingo37",
+	"betYou": "Your bet",
+	"winYou": "Your win",
+
+	"result": "Result",
+	"drawingInProcess": "Draw in progress",
+	"AcceptingBets": "Accepting bets",
+	"BetsEnd" : "Bets are coming to end",
+	"DrawStarted" : "Draw has started",
+	"BettingBegun" : "Betting has begun",
+
+	"even": "EVEN",
+	"odd": "ODD"
+}
+

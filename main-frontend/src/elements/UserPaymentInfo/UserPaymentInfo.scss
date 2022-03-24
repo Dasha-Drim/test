@@ -1,0 +1,55 @@
+@import '../../main.scss';
+
+.UserPaymentInfo{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  @media(max-width: 560px){
+    flex-wrap: wrap;
+    margin-bottom: 1.875em;
+  }
+  &:last-child{
+      margin-bottom: 0;
+  }
+  span{
+    width: 24%;
+    @media(max-width: 560px){
+      width: 50%;
+      margin-bottom: 5px;
+    }
+  }
+  .condition{
+    text-align: right;
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.9em;
+    @media(max-width: 560px){
+      order: 1;
+      text-align: left;
+    }
+  }
+  .credited{
+    color: $condition-credited;
+  }
+  .not-credited{
+    color: red;
+  }
+  .summ{
+    @media(max-width: 560px){
+      order: 2;
+      text-align: right;
+    }
+  }
+  .date{
+    @media(max-width: 560px){
+      order:3;
+    }
+  }
+  .method {
+    text-align: right;
+    @media(max-width: 560px){
+      text-align: left;
+    }
+  }
+}

@@ -1,0 +1,92 @@
+@import "../../variables.scss";
+
+.HeadAboutGame {
+	@keyframes backgroundAnimate {
+		0% {
+			background-position: -1em 5em;
+		}
+		25% {
+			background-position: -2em 5em;
+		}
+		50% {
+			background-position: -1em 3em;
+		}
+		75% {
+			background-position: -2em 3em;
+		}
+		100% {
+			background-position: -1em 5em;
+		}
+	}
+	&.bingo37 {
+		background: $bingo-gradirnt;
+		.HeadAboutGame__background {
+			background-image: url(./img/backgroundLogoBingo.svg);
+			background-position: -1em 5em;
+			animation: backgroundAnimate 4s infinite linear;
+		}
+	}
+	&.bingox {
+		background: $roulette-gradirnt;
+		.HeadAboutGame__background {
+			background-image: url(./img/backgroundLogoBingo.svg);
+			background-position: -1em 5em;
+			animation: backgroundAnimate 4s infinite linear;
+		}
+	}
+	h2 {
+		font-weight: 700;
+		font-size: 1.75em;
+		color: #E7E7E8;
+		font-family: 'Roboto', sans-serif;
+	}
+	p {
+		font-weight: 400;
+			color: #D0D0D1;
+			font-family: 'Roboto', sans-serif;
+			font-size: 1em;
+			line-height: 150%;
+	}
+	.HeadAboutGame__link {
+		font-size: 1em;
+		color: #ffffff;
+		&:hover {
+			color: #ffffff;
+		}
+	}
+	.HeadAboutGame__header {
+		.header__main-info {
+			background: rgba(255, 255, 255, 0.1);
+			box-shadow: inset 0px 0px 60px rgba(255, 255, 255, 0.25);
+			backdrop-filter: blur(90px);
+			border-radius: 20px;
+			.main-info__description {
+				width: 100%;
+				@media(min-width: 992px) {
+					width: 58%;
+				}
+				.description__text {
+					width: 100%;
+					@media(min-width: 768px) {
+						width: auto;
+					}
+				}
+			}
+			.main-info__btns {
+				width: 100%;
+				@media(min-width: 576px) {
+					width: auto;
+				}
+				a {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					@media(min-width: 576px) {
+						display: inline-block;
+						width: auto;
+					}
+				}
+			}
+		}
+	}
+}   

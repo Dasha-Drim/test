@@ -1,0 +1,80 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 27017:27017
+      
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017
+
+
+  main-frontend:
+    depends_on: 
+      - partner-backend
+    build: 
+      context: ./main-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:443
+
+  partner-frontend:
+    depends_on: 
+      - admin-frontend
+    build: 
+      context: ./partner-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3007:443
+
+  admin-frontend:
+    depends_on: 
+      - main-frontend
+    build: 
+      context: ./admin-frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3005:443
+
+  main-backend:
+    depends_on: 
+      - mongo-express
+      - mongo
+    restart: always
+    build: 
+      context: ./main-backend
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+
+  partner-backend:
+    depends_on: 
+      - main-backend
+    build: 
+      context: ./partner-backend
+      dockerfile: Dockerfile
+    ports:
+      - 3002:3002
+
+  payment-backend:
+    depends_on: 
+      - mongo-express
+      - mongo
+    restart: always
+    build: 
+      context: ./payment-backend
+      dockerfile: Dockerfile
+    ports:
+      - 3003:3003
+    
+    stdin_open: true
+    
+    
+    

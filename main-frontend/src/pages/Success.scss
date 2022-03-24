@@ -1,0 +1,14 @@
+@import "../variables.scss";
+
+.Success {
+	background: $main-bg-color;
+	h2 {
+		font-weight: 700;
+		font-size: 1.75em;
+		color: $heading-color;
+		font-family: 'Noto Sans TC', sans-serif;
+	}
+	p {
+		color: $main-text-color;
+	}
+}

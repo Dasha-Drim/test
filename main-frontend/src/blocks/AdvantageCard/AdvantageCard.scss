@@ -1,0 +1,34 @@
+@import "../../variables.scss";
+
+.AdvantageCard {
+	.AdvantageCard__content {
+		border-radius: 20px;
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+		backdrop-filter: blur(90px);
+		height: 100%;
+		transition: background-color .2s linear;
+		&:hover {
+			background-color: rgba(46, 52, 211, 0.2);
+		}
+		h4 {
+			font-weight: 600;
+			font-size: 1.125em;
+			color: #E7E7E8;
+		}
+		p {
+			font-weight: 400;
+			font-size: 1em;
+			line-height: 150%;
+			color: #D0D0D1;
+		}
+		img {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+
+
+
+

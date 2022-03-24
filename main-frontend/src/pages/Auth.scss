@@ -1,0 +1,38 @@
+@import "../variables.scss";
+
+.Auth {
+	background: $main-bg-color;
+	.Auth__content {
+		background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+		backdrop-filter: blur(90px);
+		border-radius: 20px;
+		h2 {
+			font-weight: 900;
+			font-size: 1.75em;
+			color: #E7E7E8;
+		}
+		p {
+			font-weight: 400;
+			color: #D0D0D1;
+			font-family: 'Roboto', sans-serif;
+			font-size: 1em;
+			line-height: 150%;
+		}
+		.content__holder {
+			width: 100%;
+			@media(min-width: 576px) {
+				width: 90%;
+			}
+			@media(min-width: 992px) {
+				width: 75%;
+			}
+		}
+		.content__link {
+			font-size: 1em;
+			color: #A1A1A3;
+		&:hover {
+			color: #ffffff;
+		}
+		}
+	}
+}

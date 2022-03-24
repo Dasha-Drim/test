@@ -1,0 +1,19 @@
+.ConfirmModal {
+	&__Overlay {
+		position: fixed;
+    	inset: 0px;
+    	background-color: rgba(0, 0, 0, 0.25);
+    	z-index: 10;
+	}
+	&__Content {
+		position: absolute;
+	    inset: 50% auto auto 50%;
+	    border-radius: 20px;
+	    background: rgb(255, 255, 255);
+	    overflow: auto;
+	    outline: none;
+	    padding: 20px;
+	    margin-right: -50%;
+	    transform: translate(-50%, -50%);
+	}
+}

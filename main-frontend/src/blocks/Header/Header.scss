@@ -1,0 +1,93 @@
+@import "../../variables.scss";
+
+.Header {
+	background: #141418;
+	.Header__logo {
+		text-decoration: none;
+		font-weight: 900;
+		font-size: 1.5em;
+		color: #E7E7E8;
+	}
+	.Header__menu {
+		    z-index: 1;
+		nav {
+			a {
+				margin: 1em 1em 0em;
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 1em;
+				color: #A1A1A3;
+				&:hover {
+					color: #FFFFFF;
+				}
+			}
+		}
+		.header__btn {
+
+		}
+	}
+				.header__select {
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(90px);
+				border-radius: 999px;
+				padding: 0 1.35em;
+				width: 6.5em;
+				cursor: pointer;
+				z-index: 5;
+				span {
+					font-weight: 400;
+					font-size: 1em;
+					color: #E7E7E8;
+					text-transform: uppercase;
+					&.select-list__item {
+						text-transform: none;
+					}
+				}
+				img {
+					&.transform {
+						transform: rotate(180deg);
+					}
+				}
+				.select-list {
+					width: 176%;
+					flex-wrap: wrap;
+					top: 130%;
+					right: 0;
+					//padding: .5em 0;
+					background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #141418;
+					backdrop-filter: blur(90px);
+					border-radius: 20px;
+					.select-list__item {
+						padding: .5em 1.35em;
+						&:first-child {
+							padding-top: 1em;
+							border-radius: 20px 20px 0 0;
+						}
+						&:last-child {
+							padding-bottom: 1em;
+							border-radius: 0 0 20px 20px;
+						}
+						&:last-child:first-child {
+							padding-top: 1em;
+							padding-bottom: 1em;
+							border-radius: 20px;
+						}
+						&:hover {
+							background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #141418;
+						}
+					}
+				}
+			}
+	.HeaderAuth__balance {
+		span {
+			font-weight: 500;
+			font-size: 1em;
+			color: #FFFFFF;
+			display: block;
+			&:nth-child(2) {
+				font-weight: 400;
+				color: $main-text-color;
+			}
+		}
+	}
+}

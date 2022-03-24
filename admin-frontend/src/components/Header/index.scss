@@ -1,0 +1,21 @@
+.Header {
+	background: #fff;
+	.rotate svg {
+		transform: rotate(180deg);
+	}
+	.select-list {
+		flex-wrap: wrap;
+		right: 0;
+		background: red;
+    	border-radius: 5px;
+    	background: #fff;
+    	box-shadow: rgb(15,15,15,0.05) 0px 0px 0px 1px, rgb(15,15,15,0.1) 0px 3px 6px, rgb(15,15,15,0.2) 0px 9px 24px;
+    	&__item {
+    		border-radius: 0px;
+    		white-space: nowrap;
+    		&:hover {
+    			background: #E0E2E3;
+    		}
+    	}
+	}
+}

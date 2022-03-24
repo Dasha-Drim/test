@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+.HeadBlock {
+	background: $secondary-gradient-color;
+	h2 {
+		font-weight: 700;
+		font-size: 1.75em;
+		color: #E7E7E8;
+		font-family: 'Roboto', sans-serif;
+	}
+}

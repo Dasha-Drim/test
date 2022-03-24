@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+.Lk {
+  width: 100%;
+  background: $main-bg-color;
+  .logout-btn {
+  	    background: linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04));
+	backdrop-filter: blur(90px);
+	    width: 100%;
+	    padding: 20px;
+	    border-radius: 20px;
+	    color: $main-link-color;
+	    &:hover {
+	    	text-decoration: none;
+			background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+	    }
+  }
+}
+
+
+ 
+ 

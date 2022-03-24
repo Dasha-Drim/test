@@ -1,0 +1,47 @@
+@import "../../variables.scss";
+
+
+.HeaderAuth {
+	background: $header-bg-color;
+	.HeaderAuthr__logo {
+		color: $heading-color;
+		letter-spacing: 0.04em;
+		font-size: 1.5em;
+		text-decoration: none;
+		font-weight: 700;
+	}
+	.HeaderAuth__menu {
+		nav {
+			a {
+				margin: 1em 1em 0em;
+				text-decoration: none;
+				color: $main-link-color;
+				font-size: .875em;
+			}
+		}
+	}
+	.HeaderAuth__balance {
+		span {
+			font-weight: 500;
+			font-size: .75em;
+			color: #FFFFFF;
+			&:nth-child(2) {
+				font-weight: 400;
+				color: $main-text-color;
+			}
+		}
+	}
+	.dropdown__menu{
+		display: none;
+		z-index: 4;
+		a {
+			height: 100%;
+			display:flex;
+			align-items:center;
+			img {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}

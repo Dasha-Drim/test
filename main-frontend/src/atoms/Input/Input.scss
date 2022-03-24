@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.Input{
+  &.no-valid > input {
+      border: 2px solid red;
+    }
+  input{
+    width: 100%;
+    padding: 0.8em 1.2em;
+    font-style: normal;
+    font-weight: normal;
+    font-size: .875em;
+    outline: none;
+    border-radius: 5px;
+    background: #F8FBFF;
+    border: 2px solid rgba(3, 10, 27, 0.03);
+    display: block;
+    color: $admin-secondary-text-color;
+  }
+  label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.75em;
+    margin-bottom: 5px;
+    display: block;
+    color: $admin-secondary-text-color;
+  }
+}

@@ -113,7 +113,7 @@ let sci_create_order = async (amount, currency, orderId="", comment="", system=0
 		func: "sci_create_order",
 		sci_id: merchantID,
 		sci_key: merchantKey,
-		domain: "http://dev.unicreate.ru",
+		domain: "https://dev.unicreate.ru",
 		order_id: orderId,
 		amount: +amount,
 		currency: currency,
@@ -140,7 +140,7 @@ let getWayToPay = async (payment) => {
 			let infoPayment = {
 				name: "PayKassa.pro (" + (Math.floor(amount * 100000) / 100000) + " " + system.currency + ")",
 				type: "paykassapro",
-				logotype: "http://dev.unicreate.ru:3003/images/paykassa.svg",
+				logotype: "https://dev.unicreate.ru:3003/images/paykassa.svg",
 				way: {
 					"request_type": "GET",
 					url: result.data.url,
@@ -193,7 +193,7 @@ let withdrawApplicationMethod = async (amount) => {
     		let infoPayment = {
     			name: "paykassaPro(" + system.currency + ")",
     			type: "paykassapro",
-    			logotype: "http://dev.unicreate.ru:3003/images/paykassa.svg",
+    			logotype: "https://dev.unicreate.ru:3003/images/paykassa.svg",
     			data: {
     				system: system.value,
     				currency: system.currency,

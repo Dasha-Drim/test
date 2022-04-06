@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Bingo37.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Bingo37.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component} from 'react';
+import './Bingo37.scss';
+
+import ENVIRONMENT from "../../utils/ENVIRONMENT.js";
+
+import io from 'socket.io-client';
+
+/** Class representing a game Bingo37 
+* @namespace Bingo37
+*/
+export default class Bingo37 extends React.Component {
+  bingo37Container;
+  params = [];
+
+  mainContainerDOM;
+  mainGameContainerDOM;
+  videoContainer;
+  videoImg;
+  modalContainer;
+  modalVideoContainer;
+  tableDOM;
+  controlsContainerDOM;
+  timeLineDOM;
+
+  currentChip;
+  chips = [];
+  infoBlocks = {};
+  modalInfo = {};
+  buttonClear;
+  buttonUndo;
+
+  finalArrayOfBets = [];
+  previousFinalArrayOfBets = [];
+  betsLog = [];
+  uidChip = 0;
+
+  tableIsBlocked = true;
+  timerId = null;
+
+    /**
+  	* Represents a game Bingo 37 for React.
+  	* @memberof Bingo37
+   	* @constructor
+   	* @params {Object} params - object with array of chips and object of icons
+   	*/
+    constructor(params) {
+      super(params);
+      this.params = params || [];
+    }
+
+    /**
+   	* Set game container when component did mount
+   	* @memberof Bingo37
+   	*/
+    componentDidMount() {
+      this.bingo37Container = this.el;
+      this.load();
+    }
+
+    /**
+    * Update params when Bingo37 recieves new props
+    * @memberof Bingo37
+    */
+    shouldComponentUpdate(newProps) {
+      console.log('new props', newProps);
+      this.params = newProps;
+      return true;
+    }
+
+    /**
+   	* Remove handlers when component will unmount
+   	* @memberof Bingo37
+   	* @params {Object} params - object with array of chips and object of icons
+   	*/
+    componentWillUnmount() {
+      this.removeHandlers();
+    }
+
+    /**
+  	* Loads all the necessary functions for the game
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    load() {
+      this.generateMobileException();
+      this.generateContainerModals();
+      this.generateMainContainerForTableAndControllers();
+      this.generateTimeLine();
+      this.generateTable();
+      this.generateControls();
+      this.generateSidebar();
+      this.generateFellOutNumbers();
+      this.setTableHandlers();
+      this.setSidebarHandlers();
+      this.sockets();
+    }
+
+    /**
+  	* Getter, returns current bets on the table
+  	* @memberof Bingo37
+  	* @returns {Array} finalArrayOfBets
+  	*/
+    get getBets() {
+      return this.finalArrayOfBets;
+    }
+
+
+    /* == HELPERS == */
+
+    /**
+  	* Comparison of two arrays for equivalence
+  	* @method compare
+  	* @memberof Bingo37
+  	* @param {Array} a1 - The first array
+  	* @param {Array} a2 - The second array
+  	* @returns {boolean} Are the two arrays equivalent
+  	*/
+    compare(a1, a2) {
+      return a1.length == a2.length &amp;&amp; a1.every((v, i) => v === a2[i])
+    }
+    /**
+  	* Finding parent element with class
+  	* @method findParent
+  	* @memberof Bingo37
+  	* @param {NodeElement} el - NodeElement
+  	* @param {String} cls - Class of parent
+  	* @returns {NodeElement} Parent NodeElement
+  	*/
+    findParent(el, cls) {
+      while ((el = el.parentElement) &amp;&amp; !el.classList.contains(cls));
+      return el;
+    }
+
+
+    /* == GENERATE == */
+
+    /**
+  	* This function creates a new DOM element with mobile exception "Rotate your device"
+  	* @method generateMobileException
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateMobileException() {
+      this.bingo37Container.insertAdjacentHTML('afterbegin', '&lt;div class="Mobile">&lt;span>Переверните ваше устройство&lt;/span>&lt;/div>');
+    }
+
+
+    /**
+    * This function creates a new DOM element with modal
+    * @method generateContainerModals
+    * @memberof Bingo37
+    * @returns {void}
+    */
+    generateContainerModals() {
+      this.bingo37Container.insertAdjacentHTML('beforeend', '&lt;div class="Modal__container">&lt;/div>');
+      this.modalContainer = this.bingo37Container.querySelector('.Modal__container');
+      this.modalContainer.insertAdjacentHTML('beforeend', '&lt;div class="Modal">&lt;h2>&lt;/h2>&lt;p>&lt;/p>&lt;/div>');
+       this.modalInfo = {
+          title: this.modalContainer.querySelector(".Modal h2"),
+          text: this.modalContainer.querySelector(".Modal p"),
+        }
+
+        this.bingo37Container.insertAdjacentHTML('beforeend', '&lt;div class="ModalVideo__container">&lt;/div>');
+        this.modalVideoContainer = this.bingo37Container.querySelector('.ModalVideo__container');
+        this.modalVideoContainer.insertAdjacentHTML('beforeend', '&lt;div class="ModalVideo">&lt;img src="'+ENVIRONMENT.bingo37Video+'" class="VideoStream" alt="" >&lt;button class="ModalVideo__close">&lt;img src="' + this.params.icons.cross + '" class="close__img" />&lt;/button>&lt;/div>');
+        this.modalVideoContainer.onclick = (e) => {
+          if (e.target.className == "ModalVideo__container") this.modalVideoContainer.style.display = "none";
+          if ((e.target.className == "ModalVideo__close") || (e.target.className == "close__img")) this.modalVideoContainer.style.display = "none";
+        }
+    }
+
+
+    /**
+  	* This function creates a new DOM element with container for table and controllers
+  	* @method generateMainContainerForTableAndControllers
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateMainContainerForTableAndControllers() {
+      this.bingo37Container.insertAdjacentHTML('beforeend', '&lt;div class="Main">&lt;/div>');
+      this.mainContainerDOM = this.bingo37Container.querySelector('.Main');
+      this.mainContainerDOM.insertAdjacentHTML('beforeend', '&lt;div class="Main__GameContainer">&lt;/div>');
+      this.mainGameContainerDOM = this.bingo37Container.querySelector('.Main__GameContainer');
+      this.mainContainerDOM.insertAdjacentHTML('afterbegin', '&lt;div class="previous_fell-out__number">&lt;/div>');
+    }
+
+    /**
+    * This function creates a new DOM element with time line
+    * @method generateTimeLine
+    * @memberof Bingo37
+    * @returns {void}
+    */
+    generateTimeLine() {
+      this.mainGameContainerDOM.insertAdjacentHTML('beforeend', '&lt;div class="Bingo37__TimeLine">&lt;/div>');
+      this.timeLineDOM = this.mainGameContainerDOM.querySelector('.Bingo37__TimeLine');
+      this.timeLineDOM.insertAdjacentHTML('afterbegin', '&lt;span class="game_Step">&lt;/span>&lt;div class="Progress_Bar">&lt;div class="Progress_Bar-inner">&lt;/div>&lt;/div>')
+
+      this.timeLine = {
+        time: this.timeLineDOM.querySelector(".Progress_Bar-inner"),
+        step: this.timeLineDOM.querySelector(".game_Step")
+      }
+    }
+
+    /**
+  	* This function creates a new DOM element with table
+  	* @method generateTable
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateTable() {
+      this.mainGameContainerDOM.insertAdjacentHTML('beforeend', '&lt;div class="Bingo37__Table">&lt;/div>');
+      let gameTable = this.mainGameContainerDOM.querySelector('.Bingo37__Table');
+
+        // first cell
+        gameTable.insertAdjacentHTML('afterbegin', '&lt;div class="Bingo Cell" data-value="37">&lt;span>Бинго37&lt;/span>&lt;/div>');
+
+        for (let i = 0; i &lt;= 24; i = i + 12) {
+            // append HolderNumber
+            gameTable.insertAdjacentHTML('beforeend', '&lt;div class="HolderNumber">&lt;/div>');
+            let key = i === 0 ? 0 : i === 12 ? 1 : i === 24 ? 2 : null;
+            let holderNumber = gameTable.querySelectorAll('.HolderNumber')[key];
+            for (let j = 1; j &lt;= 12; j++) {
+              holderNumber.insertAdjacentHTML('beforeend', '&lt;div class="Cell" data-value="' + (j + i) + '">&lt;span>' + (j + i) + '&lt;/span>&lt;/div>');
+            }
+            // append HolderLine
+            holderNumber.insertAdjacentHTML('afterend', '&lt;div class="HolderLine"&lt;/div>');
+            let holderLine = gameTable.querySelectorAll('.HolderLine')[key];
+            for (let j = 1; j &lt;= 3; j++) {
+              holderLine.insertAdjacentHTML('afterbegin', '&lt;div class="Cell" data-value="[' + [j + i, j + i + 3, j + i + 6, j + i + 9] + ']">&lt;/div>');
+            }
+          }
+        // append Lines
+        gameTable.insertAdjacentHTML('beforeend', '&lt;div class="Lines">&lt;/div>');
+        let lines = gameTable.querySelector('.Lines');
+        for (let i = 0; i &lt; 3; i++) {
+          if (i == 0) lines.insertAdjacentHTML('beforeend',
+            '&lt;div class="Cell" data-value="[3,6,9,12,15,18,21,24,27,30,33,36]">&lt;span>линия 1&lt;/span>&lt;/div>');
+            if (i == 1) lines.insertAdjacentHTML('beforeend',
+              '&lt;div class="Cell" data-value="[2,5,8,11,14,17,20,23,26,29,32,35]">&lt;span>линия 2&lt;/span>&lt;/div>');
+              if (i == 2) lines.insertAdjacentHTML('beforeend',
+                '&lt;div class="Cell" data-value="[1,4,7,10,13,16,19,22,25,28,31,34]">&lt;span>линия 3&lt;/span>&lt;/div>');
+            }
+        // append HolderGroup
+        gameTable.insertAdjacentHTML('beforeend', '&lt;div class="HolderGroup">&lt;/div>');
+        let holderGroup = gameTable.querySelector('.HolderGroup');
+        for (let i = 0; i &lt; 3; i++) {
+          if (i == 0) holderGroup.insertAdjacentHTML('beforeend',
+            '&lt;div class="Cell" data-value="[1,2,3,4,5,6,7,8,9,10,11,12]">&lt;span>1 - 12&lt;/span>&lt;/div>');
+            if (i == 1) holderGroup.insertAdjacentHTML('beforeend',
+              '&lt;div class="Cell" data-value="[13,14,15,16,17,18,19,20,21,22,23,24]">&lt;span>13 - 24&lt;/span>&lt;/div>');
+              if (i == 2) holderGroup.insertAdjacentHTML('beforeend',
+                '&lt;div class="Cell" data-value="[25,26,27,28,29,30,31,32,33,34,35,36]">&lt;span>25 - 36&lt;/span>&lt;/div>');
+            }
+        // append HolderGroupLastRow
+        gameTable.insertAdjacentHTML('beforeend', '&lt;div class="HolderGroupLastRow">&lt;/div>');
+        let holderGroupLastRow = gameTable.querySelector('.HolderGroupLastRow');
+        for (let i = 0; i &lt; 2; i++) {
+          if (i == 0) holderGroupLastRow.insertAdjacentHTML('beforeend',
+            '&lt;div class="Cell" data-value="[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]">&lt;span>1-18&lt;/span>&lt;/div>');
+            if (i == 1) holderGroupLastRow.insertAdjacentHTML('beforeend',
+              '&lt;div class="Cell" data-value="[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]">&lt;span>19-36&lt;/span>&lt;/div>');
+          }
+
+        // export
+        this.tableDOM = gameTable;
+      }
+
+    /**
+  	* This function creates a new DOM element with game controls (chips, buttons)
+  	* @method generateControls
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateControls() {
+      let controlsContainer = document.createElement('div');
+      controlsContainer.className = "Bingo37__Controls";
+
+        // container for Repeat and X2 buttons
+        let controlsRepeadAndX2Container = document.createElement('div');
+        controlsRepeadAndX2Container.className = "repeatAndX2Buttons";
+        // create Repeat Last Bet button
+        let buttonRepeatLastBet = document.createElement('button');
+        buttonRepeatLastBet.innerHTML = 'Повторить';
+        buttonRepeatLastBet.onclick = () => this.buttonRepeatLastBetOnClick();
+        controlsRepeadAndX2Container.appendChild(buttonRepeatLastBet);
+        // create X2 button
+        let buttonX2 = document.createElement('button');
+        buttonX2.innerHTML = 'Удвоить';
+        buttonX2.onclick = () => this.buttonX2OnClick();
+        controlsRepeadAndX2Container.appendChild(buttonX2);
+
+
+        // container for chips
+        let controlsChipsContainer = document.createElement('div');
+        controlsChipsContainer.className = "chips";
+
+        this.params.chips.forEach((item, i) => {
+            // create chip image
+            let chip = new Image();
+            chip.src = item.src;
+            chip.setAttribute('data-chip-price', item.price);
+            chip.setAttribute('data-chip-number', i);
+
+            if (i === 0) this.currentChip = chip;
+
+            this.chips.push(chip);
+            // set click listner
+            chip.onclick = (e) => this.chipControlsOnClick(e);
+            controlsChipsContainer.appendChild(chip);
+        })
+
+
+        // container for buttons
+        let controlsButtonContainer = document.createElement('div');
+        controlsButtonContainer.className = "buttons";
+
+        // create UnDo button
+        let buttonUndo = document.createElement('button');
+        buttonUndo.innerHTML = 'Назад';
+        buttonUndo.onclick = () => this.buttonUndoOnClick();
+        controlsButtonContainer.appendChild(buttonUndo);
+        this.buttonUndo = buttonUndo;
+
+        // create Clear button
+        let buttonClear = document.createElement('button');
+        buttonClear.innerHTML = 'Очистить';
+        buttonClear.onclick = () => this.buttonClearOnClick();
+        controlsButtonContainer.appendChild(buttonClear);
+        this.buttonClear = buttonClear;
+
+        // append to controlsDiv
+        controlsContainer.appendChild(controlsRepeadAndX2Container);
+        controlsContainer.appendChild(controlsChipsContainer);
+        controlsContainer.appendChild(controlsButtonContainer);
+
+        // draw DOM elements in game-container
+        this.mainGameContainerDOM.appendChild(controlsContainer);
+
+        // export
+        this.controlsContainerDOM = controlsContainer;
+      }
+
+    /**
+  	* This function creates a new DOM element with game sidebar
+  	* @method generateSidebar
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateSidebar() {
+      this.bingo37Container.insertAdjacentHTML('afterbegin', '&lt;div class="Bingo37__Sidebar" data-btn="overlay">&lt;/div>');
+      let sidebar = this.bingo37Container.querySelector('.Bingo37__Sidebar');
+
+      sidebar.insertAdjacentHTML('afterbegin', '&lt;div class="Bingo37__Sidebar-content">&lt;/div>');
+      let sidebarContent = sidebar.querySelector('.Bingo37__Sidebar-content');
+
+      
+      sidebarContent.insertAdjacentHTML('beforeend',
+        '&lt;div class="Holder-time">&lt;h3>Бинго 37&lt;/h3>&lt;div class="Holder-time__content">&lt;span class="Step__content">До игры&lt;/span>&lt;span class="Time__content">00:30&lt;/span>&lt;/div>&lt;/div>'
+        );
+      sidebarContent.insertAdjacentHTML('beforeend', '&lt;div class="Bet">&lt;span>Ставка:&lt;/span>&lt;span class="Bet__content">0&lt;/span>&lt;/div>');
+      sidebarContent.insertAdjacentHTML('beforeend', '&lt;div class="Win">&lt;span>Выигрыш:&lt;/span>&lt;span class="Win__content">0&lt;/span>&lt;/div>');
+      sidebarContent.insertAdjacentHTML('beforeend',
+        '&lt;div class="fell-out__number">&lt;div class="lds-ellipsis">&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;/div>&lt;/div>');
+      sidebarContent.insertAdjacentHTML('afterbegin', '&lt;div class="Video">&lt;img src="'+ENVIRONMENT.bingo37Video+'" alt="" class="Video__stream">&lt;img src="' + this.params.img.machine + '" alt="" class="Video__img">&lt;/div>');
+      this.videoContainer = sidebarContent.querySelector('.Video__stream');
+      this.videoImg = sidebarContent.querySelector('.Video__img');
+      this.videoContainer.onclick = () => {
+          this.modalVideoContainer.style.display = "flex";
+      }
+
+      sidebar.insertAdjacentHTML('afterend', '&lt;div class="Sidebar-button" data-btn="sidebar">&lt;img src="' + this.params.icons.arrow + '">&lt;/div>');
+
+        // export
+        this.infoBlocks = {
+          bet: sidebarContent.querySelector(".Bet__content"),
+          win: sidebarContent.querySelector(".Win__content"),
+          time: sidebarContent.querySelector(".Time__content"),
+          step: sidebarContent.querySelector(".Step__content")
+        }
+      }
+
+
+    /**
+  	* This function creates a new DOM element with fell out numbers
+  	* @method generateFellOutNumbers
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    generateFellOutNumbers() {
+      let fellOutNumbers = this.bingo37Container.querySelector('.previous_fell-out__number');
+      this.infoBlocks.lastNumbers = fellOutNumbers;
+      this.infoBlocks.currentNumber = this.bingo37Container.querySelector(".fell-out__number");
+    }
+
+    /**
+  	* This function set game table handler onclick and determines where the user wants to put the chip
+  	* @method setTableHandlers
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    setTableHandlers() {
+      this.tableDOM.onclick = (e) => {
+        if (this.tableIsBlocked) return false;
+        console.log('this.params.balance', this.params.balance);
+        if(this.params.balance) {
+          if (+this.infoBlocks.bet.innerHTML + +this.currentChip.dataset.chipPrice > this.params.balance) return false;
+        }
+
+        let cell = e.target.classList.contains("Cell") ? e.target : this.findParent(e.target, 'Cell');
+        if (!cell) return false;
+
+        let target = cell.getBoundingClientRect();
+        let width = target.width;
+        let height = target.height;
+        let x = e.clientX - target.left;
+        let y = e.clientY - target.top;
+
+        let currentBet = [],
+        offsetX, offsetY;
+        let isFixedPosition = false;
+
+        let cellValue = JSON.parse(cell.dataset.value);
+        if (typeof(cellValue) == 'object') {
+          currentBet = cellValue;
+          isFixedPosition = true;
+        } else {
+          currentBet.push(cellValue);
+
+          if (x &lt;= width / 4) {
+            // clicked to left
+            let additionalValue = this.getCellValueOnThe_left(cellValue);
+            if (additionalValue) {
+              currentBet.push(additionalValue);
+              offsetX = "left";
+            }
+          }
+          if (x >= (width / 4) * 3) {
+            // clicked to right
+            let additionalValue = this.getCellValueOnThe_right(cellValue);
+            if (additionalValue) {
+              currentBet.push(additionalValue);
+              offsetX = "right";
+            }
+          }
+          if (y &lt;= height / 4) {
+            // clicked to top
+            let additionalValue = this.getCellValueOnThe_top(cellValue);
+            if (additionalValue) {
+              currentBet.push(additionalValue);
+              offsetY = "top";
+            }
+          }
+          if (y >= (height / 4) * 3) {
+            // clicked to bottom
+            let additionalValue = this.getCellValueOnThe_bottom(cellValue);
+            if (additionalValue) {
+              currentBet.push(additionalValue);
+              offsetY = "bottom";
+            }
+          }
+
+          if (currentBet.length === 3) {
+            let additionalValue = this.findTheFourthCell(
+              cellValue,
+              offsetX,
+              offsetY
+              );
+            if (additionalValue) currentBet.push(additionalValue);
+          }
+        }
+        console.log("currentBet", currentBet);
+        currentBet.sort((a, b) => a - b);
+
+        // put chip to game table
+        //this.putChip(currentBet, offsetX, offsetY, isFixedPosition, cell);
+
+        let chip = this.currentChip.cloneNode(true);
+        let price = +chip.dataset.chipPrice;
+        this.addToFinalArray(currentBet, price);
+        this.syncFinalArrayAndTable();
+      };
+    }
+
+    /**
+  	* This function returns the value of the cell at the top (if any)
+  	* @method getCellValueOnThe_top
+  	* @memberof Bingo37
+  	* @param {Number} cellValue - The value of cell
+  	* @returns {Number} CellValue
+  	*/
+    getCellValueOnThe_top(cellValue) {
+      console.log("cellValue", cellValue);
+      return cellValue % 3 !== 0 &amp;&amp; cellValue !== 37 ? cellValue + 1 : null;
+    }
+
+    /**
+  	* This function returns the value of the cell at the bottom (if any)
+  	* @method getCellValueOnThe_top
+  	* @memberof Bingo37
+  	* @param {Number} cellValue - The value of cell
+  	* @returns {Number} CellValue
+  	*/
+    getCellValueOnThe_bottom(cellValue) {
+      console.log("cellValue", cellValue);
+      return cellValue % 3 !== 1 ? cellValue - 1 : null;
+    }
+
+    /**
+  	* This function returns the value of the cell at the left (if any)
+  	* @method getCellValueOnThe_left
+  	* @memberof Bingo37
+  	* @param {Number} cellValue - The value of cell
+  	* @returns {Number} CellValue
+  	*/
+    getCellValueOnThe_left(cellValue) {
+      console.log("cellValue", cellValue);
+      return cellValue % 12 !== 1 &amp;&amp; cellValue % 12 !== 2 &amp;&amp; cellValue % 12 !== 3 ? cellValue - 3 : null;
+    }
+
+    /**
+  	* This function returns the value of the cell at the right (if any)
+  	* @method getCellValueOnThe_right
+  	* @memberof Bingo37
+  	* @param {Number} cellValue - The value of cell
+  	* @returns {Number} CellValue
+  	*/
+    getCellValueOnThe_right(cellValue) {
+      console.log("cellValue", cellValue);
+      return cellValue % 12 !== 0 &amp;&amp;
+      cellValue % 12 !== 10 &amp;&amp;
+      cellValue % 12 !== 11 ? cellValue + 3 : null;
+    }
+
+    /**
+  	* This function returns the value of the fourth cell (when you now clicked cell and offsets)
+  	* @method findTheFourthCell
+  	* @memberof Bingo37
+  	* @param {Number} cellValue - The value of cell
+  	* @param {String} offsetX - Left or right indent
+  	* @param {String} offsetY - Top or bottom indent
+  	* @returns {Number} CellValue
+  	*/
+    findTheFourthCell(cellValue, offsetX, offsetY) {
+      return offsetX == "left" &amp;&amp; offsetY == "top" ? cellValue - 2 : offsetX == "left" &amp;&amp; offsetY == "bottom" ? cellValue - 4 : offsetX == "right" &amp;&amp;
+      offsetY == "top" ? cellValue + 4 : offsetX == "right" &amp;&amp; offsetY == "bottom" ? cellValue + 2 : null;
+    }
+
+
+
+    /**
+    * This function adding new bet to finalArrayOfBets
+    * @method addToFinalArray
+    * @memberof Bingo37
+    * @param {Array} cellValue - cell for chip
+    * @param {Number} price - price of chip
+    * @param {Boolean} log - do we need to log this adding?
+    * @returns {void}
+    */
+    addToFinalArray(cellValue, price, log = true) {
+      if(log) this.betsLog.push(cellValue);
+      let hasInFinalArray = false;
+      this.finalArrayOfBets.forEach((betItem, id) => {
+        if (this.compare(betItem.bet, cellValue)) {
+          hasInFinalArray = true;
+          betItem.money.push(price);
+          betItem.newOne = true;
+        }
+      })
+      if(!hasInFinalArray) {
+        this.finalArrayOfBets.push({
+          bet: cellValue,
+          money: [price],
+          ids: [],
+          newOne: true
+        });
+      }
+    }
+
+
+
+    /**
+    * This function sync finalArrayOfBets with game table
+    * @method syncFinalArrayAndTable
+    * @memberof Bingo37
+    * @returns {void}
+    */
+    syncFinalArrayAndTable() {
+      if(!this.finalArrayOfBets.length) {
+        [].forEach.call(document.querySelectorAll('[data-chip-uid]'), function (el) {
+          el.remove();
+        });
+      }
+      this.finalArrayOfBets.forEach((betItem, id) => {
+        if(betItem.newOne) {
+          betItem.newOne = false;
+
+          // rearrange all the chips of this bet
+          let sum = betItem.money.reduce((a, b) => a + b, 0);
+          betItem.ids.forEach((item) => {
+            try {
+              this.tableDOM.querySelector('[data-chip-uid="' + item + '"]').remove();
+            } catch(e) {}
+          })
+          betItem.ids = [];
+
+          // defining the chip position
+          let mainCellNode = this.tableDOM.querySelector('[data-value="' + betItem.bet[0] + '"]');
+          let offsetY, offsetX;
+
+          if(betItem.bet.length === 4) {
+            if(betItem.bet[0]+1 === betItem.bet[1]) { offsetY = "top"; offsetX = "right"; }
+            if(betItem.bet[0]+3 === betItem.bet[1]) mainCellNode = this.tableDOM.querySelector('[data-value="' + JSON.stringify(betItem.bet) + '"]');
+          }
+
+          if(betItem.bet.length === 2) {
+            if(betItem.bet[0]+1 === betItem.bet[1]) offsetY = "top";
+            if(betItem.bet[0]-1 === betItem.bet[1]) offsetY = "bottom";
+            if(betItem.bet[0]+3 === betItem.bet[1]) offsetX = "right";
+            if(betItem.bet[0]-3 === betItem.bet[1]) offsetX = "left";
+          }
+
+          if(betItem.bet.length > 4) mainCellNode = this.tableDOM.querySelector('[data-value="' + JSON.stringify(betItem.bet) + '"]');
+
+          let n, newTop = offsetY == 'top' ? -25 : 25;
+          for (let i = this.params.chips.length - 1; i >= 0; i--) {
+            // get bigger 
+            n = Math.floor(sum / this.params.chips[i].price);
+            sum -= this.params.chips[i].price * n;
+            for (; n > 0; n--) {
+              let CloneChip = this.chips[i].cloneNode(true);
+              CloneChip.setAttribute('data-chip-uid', ++this.uidChip);
+              if (offsetX) CloneChip.classList.add(offsetX);
+              if (offsetY) CloneChip.classList.add(offsetY);
+              CloneChip.style.top = newTop + "%";
+
+              betItem.ids.push(this.uidChip);
+              // draw chip on the table
+              mainCellNode.append(CloneChip);
+              newTop -= 3;
+            }
+          } //end for
+
+        }
+      })
+
+      let allBetsSum = 0;
+      this.finalArrayOfBets.forEach((betItem, id) => {
+        let betSum = betItem.money.reduce((a, b) => a + b, 0);
+        allBetsSum += betSum;
+      })
+      this.infoBlocks.bet.innerHTML = allBetsSum;
+    }
+
+
+
+    /**
+  	* This function set game sidebar handlers and responsible for opening and hiding the sidebar
+  	* @method setSidebarHandlers
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    setSidebarHandlers() {
+      let sidebarBtn = this.bingo37Container.querySelector('[data-btn="sidebar"]');
+      let sidebarOverlay = this.bingo37Container.querySelector('[data-btn="overlay"]');
+
+      sidebarBtn.onclick = (e) => {
+        e.preventDefault();
+        sidebarOverlay.classList.toggle('Sidebar-opened');
+        sidebarBtn.classList.toggle('Sidebar-opened-btn');
+      }
+
+      this.bingo37Container.onclick = (e) => {
+        if (e.target.classList.contains('Bingo37__Sidebar')) {
+          sidebarOverlay.classList.remove('Sidebar-opened');
+          sidebarBtn.classList.remove('Sidebar-opened-btn');
+        }
+      };
+    }
+
+
+    /**
+  	* This function changes current chip when user clicked on contorls chips
+  	* @method chipControlsOnClick
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    chipControlsOnClick = (e) => this.currentChip = e.target;
+
+    /**
+    * Click handler for button repeat last bet
+    * @method buttonRepeatLastBetOnClick
+    * @memberof Bingo37
+    * @returns {void}
+    */
+    buttonRepeatLastBetOnClick = () => {
+      if (this.tableIsBlocked) return false;
+      if (this.finalArrayOfBets.length) return false;
+      this.finalArrayOfBets = this.previousFinalArrayOfBets.slice(0);
+      this.finalArrayOfBets.forEach((betItem) => {
+        betItem.newOne = true;
+      })
+      this.previousFinalArrayOfBets = [];
+      this.betsLog = ["repeat"];
+      this.syncFinalArrayAndTable();
+    }
+
+    /**
+    * Click handler for button X2
+    * @method buttonX2OnClick
+    * @memberof Bingo37
+    * @returns {void}
+    */
+    buttonX2OnClick = () => {
+      if (this.tableIsBlocked) return false;
+
+      this.finalArrayOfBets.forEach((betItem, index) => {
+        let betIncrease = betItem.money.reduce((a, b) => a + b, 0);
+        betItem.money.forEach(price => this.addToFinalArray(betItem.bet, price, false));
+      });
+      this.betsLog.push("x2");
+      this.syncFinalArrayAndTable();
+    }
+
+    /**
+  	* Click handler for button clear
+  	* @method buttonClearOnClick
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    buttonClearOnClick = () => {
+      if (this.tableIsBlocked) return false;
+      this.finalArrayOfBets = [];
+      this.syncFinalArrayAndTable();
+      this.betsLog = [];
+    }
+
+
+    clearFinalList = () => {
+      this.previousFinalArrayOfBets = this.finalArrayOfBets.slice(0);
+      this.finalArrayOfBets = [];
+      this.syncFinalArrayAndTable();
+      this.betsLog = [];
+    }
+
+    /**
+  	* Click handler for undo button
+  	* @method buttonUndoOnClick
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    buttonUndoOnClick = () => {
+      if (this.tableIsBlocked) return false;
+      if (!this.betsLog.length) return false;
+
+      let lastBet = this.betsLog.pop();
+      if(lastBet === "repeat") {
+        this.finalArrayOfBets = [];
+        this.syncFinalArrayAndTable();
+        return true;
+      }
+      this.finalArrayOfBets.forEach((betItem, index) => {
+        if(lastBet === "x2") {
+          betItem.money.splice(betItem.money.length/2, betItem.money.length/2);
+          betItem.newOne = true;
+        }
+        if(this.compare(betItem.bet, lastBet)) {
+          betItem.money.pop();
+          betItem.newOne = true;
+        }
+      })
+      this.syncFinalArrayAndTable();
+    }
+
+    /**
+  	* This function removes all handlers
+  	* @method removeHandlers
+  	* @memberof Bingo37
+  	* @returns {void}
+  	*/
+    removeHandlers() {
+      this.tableDOM.onclick = null;
+      this.bingo37Container.querySelector('[data-btn="sidebar"]').onclick = null;
+      this.bingo37Container.onclick = null;
+      this.chips.forEach(item => {
+        item.onlick = null;
+      })
+      this.buttonClear.onclick = null;
+      this.buttonUndo.onclick = null;
+    }
+
+        /**
+    * This function гpdates the progress bar of the game step
+    * @method timeLineProgress
+    * @memberof Bingo37
+    * @returns {void}
+    */
+
+    timeLineProgress(stepDuration, timeLeft){
+      console.log(stepDuration + " " +  timeLeft);
+      clearInterval(this.timerId);
+      this.timeLine.time.style.width = timeLeft/stepDuration*100 + '%';
+      let speed = 10/stepDuration; 
+      this.timerId = setInterval(() => {
+        let currentWidth = this.timeLine.time.style.width;
+        currentWidth = currentWidth.substring(0, currentWidth.length - 1) - speed;
+        this.timeLine.time.style.width = currentWidth + '%';
+      }, 100);
+    }
+
+    /**
+  	* This function works with sockets (data exchange with the server)
+  	* @method sockets
+  	* @memberof Bingo37
+  	* @return {void}
+   */
+   sockets() {
+    const socket = io(ENVIRONMENT.bingo37, {
+      reconnectionDelayMax: 10000,
+      forceNew: true,
+      withCredentials: 'true',
+    });
+        // on connect send socket id
+        socket.on('connect', () => {
+          let socketID = socket.id;
+          let userKey;
+          if (localStorage.getItem('userKeySocket')) {
+            userKey = localStorage.getItem('userKeySocket');
+          } else {
+            userKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            localStorage.setItem('userKeySocket', userKey);
+          }
+          console.log('this.params.demo', this.params.demo)
+          socket.emit('setSocketId', {
+            socketID: socketID,
+            userKey: userKey,
+            demo: this.params.demo,
+          });
+        });
+
+        socket.on('bingo37_Game fell-out-last', (msg) => {
+          console.log('fell-out-last', msg.nums);
+          let lastNumbers = '';
+
+          if (this.tableIsBlocked) {
+            for (let i = 0; i &lt; msg.nums.length; i++) {
+              lastNumbers += '&lt;span>' + msg.nums[i] + '&lt;/span>';
+            }
+          } else {
+            this.infoBlocks.currentNumber.innerHTML = '&lt;span>' + msg.nums[0] + '&lt;/span>';
+            for (let i = 1; i &lt; msg.nums.length; i++) {
+              lastNumbers += '&lt;span>' + msg.nums[i] + '&lt;/span>';
+            }
+          }
+          this.infoBlocks.lastNumbers.innerHTML = lastNumbers;
+        })
+
+
+
+        socket.on('bingo37_Game raffle-is-completed', (msg) => {
+          console.log(msg);
+          if(!this.timerId) this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+          this.infoBlocks.step.innerHTML = msg.text;
+          this.timeLine.step.innerHTML = msg.text;
+          this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+          this.infoBlocks.currentNumber.innerHTML = '&lt;span>' + msg.num + '&lt;/span>';
+
+          let currentNumberPosition = this.tableDOM.querySelector('[data-value="' + msg.num + '"]');
+          currentNumberPosition.style.border = "3px solid #FF2E00";
+          currentNumberPosition.classList.add('current-raffle-number');
+          
+        })
+
+
+        socket.on('bingo37_Game drawingInProcess', (msg) => {
+          this.videoContainer.style.display = "block";
+          this.videoImg.style.display = "none";
+          console.log(msg);
+          if(!this.timerId) this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+          this.infoBlocks.step.innerHTML = msg.text;
+          this.timeLine.step.innerHTML = msg.text;
+          this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+          this.tableIsBlocked = true;
+          
+            // add current num to last
+            if (this.infoBlocks.currentNumber.querySelector('span')) {
+              this.infoBlocks.lastNumbers.insertAdjacentHTML('afterbegin', this.infoBlocks.currentNumber.innerHTML);
+              this.infoBlocks.currentNumber.innerHTML = '&lt;div class="lds-ellipsis">&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;/div>';
+                //this.infoBlocks.lastNumbers.removeChild(this.infoBlocks.lastNumbers.lastElementChild);
+              }
+
+            })
+
+        socket.on('bingo37_Game drawingStarts', (msg) => {
+          this.videoContainer.style.display = "block";
+          this.videoImg.style.display = "none";
+          console.log(msg);
+          this.infoBlocks.step.innerHTML = msg.text;
+          this.timeLine.step.innerHTML = msg.text;
+          this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+          this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+            // block table
+            this.tableIsBlocked = true;
+
+            // send bets
+            console.log({bets: this.getBets, demo: this.params.demo})
+            socket.emit('bingo37_Game send-bets', {bets: this.getBets, demo: this.params.demo});
+
+            // add current num to last
+            this.infoBlocks.lastNumbers.insertAdjacentHTML('afterbegin', this.infoBlocks.currentNumber.innerHTML);
+            this.infoBlocks.currentNumber.innerHTML = '&lt;div class="lds-ellipsis">&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;div>&lt;/div>&lt;/div>';
+            //this.infoBlocks.lastNumbers.removeChild(this.infoBlocks.lastNumbers.lastElementChild);
+            this.params.onWinGetBalance();
+          })
+
+        socket.on('bingo37_Game acceptingBidsComingToEnd', (msg) => {
+          console.log(msg);
+          this.tableIsBlocked = false;
+          if(!this.timerId) this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+          this.infoBlocks.step.innerHTML = msg.text;
+          this.timeLine.step.innerHTML = msg.text;
+          this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+        })
+
+        socket.on('bingo37_Game error', (msg) => {
+          console.log(msg);
+          this.tableIsBlocked = true;
+          this.modalInfo.title.innerHTML = msg.title;
+          this.modalInfo.text.innerHTML = msg.text;
+          this.modalContainer.style.display = "flex";
+        })
+
+        socket.on('bingo37_Game acceptingBidsInProcess', (msg) => {
+          console.log(msg);
+          this.tableIsBlocked = false;
+          if(!this.timerId) this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+          this.infoBlocks.step.innerHTML = msg.text;
+          this.timeLine.step.innerHTML = msg.text;
+          this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+        })
+
+        socket.on('bingo37_Game acceptingBidsStarts', (msg) => {
+          console.log(msg);
+          this.timeLineProgress(msg.stepLimits, msg.timeLeft);
+            // block table
+            this.tableIsBlocked = false;
+            if (this.tableDOM.querySelector('.current-raffle-number')) {
+            	this.tableDOM.querySelector('.current-raffle-number').style.border = null;
+            	this.tableDOM.querySelector('.current-raffle-number').classList.remove('current-raffle-number');
+            }
+            this.videoContainer.style.display = "none";
+            this.modalVideoContainer.style.display = "none";
+            this.videoImg.style.display = "block";
+
+            this.infoBlocks.win.innerHTML = '0';
+
+            this.clearFinalList();
+            this.infoBlocks.step.innerHTML = msg.text;
+            this.timeLine.step.innerHTML = msg.text;
+            this.infoBlocks.time.innerHTML = "00:" + (Math.floor(+msg.timeLeft/10)==0 ? '0'+msg.timeLeft : msg.timeLeft);
+          })
+
+        socket.on('bingo37_Game your-win', (msg) => {
+          console.log(msg);
+          this.params.onWinGetBalance();
+          this.infoBlocks.win.innerHTML = msg.win;
+        })
+      }
+
+
+      render() {
+        return &lt;div id = "Bingo37" ref = {el => this.el = el} />;
+      }
+
+    }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Bingo37.html">Bingo37</a></li></ul><h3>Classes</h3><ul><li><a href="Bingo37.module.exports.html">module.exports</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat Sep 04 2021 12:26:45 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
